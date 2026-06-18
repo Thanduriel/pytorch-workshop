@@ -215,15 +215,14 @@
 	}
 \end{frame}
 
-\begin{frame}{Artificial Neural Network I}
+\begin{frame}{Artificial Neural Network}
 $\text{MLP}: \R^{N_\text{in}} \to \R^{N_\text{out}}$  with 
 \[
 \text{MLP}(x) := (g_L\circ\cdots\circ g_1)(x)
 \] 
 with layers $g_i : \R^{N_i} \to \R^{N_{i+1}}$, where
 \begin{align*}
-	g_1(x) &= \sigma ( W_1 x + b_1) \\
-	g_j(x) &= \sigma (W_j x + b_j) + x,\quad j = 2,\dots,\,L-1\, \\
+	g_j(x) &= \sigma (W_j x + b_j) ,\quad j = 1,\dots,\,L-1\, \\
 	g_L(x) &= W_L x + b_L.
 \end{align*}
 learned weight matrix $W_i \in \R^{N_i \times N_{i+1}}$ and bias $b_i \in \R^{N_{+1}}$
