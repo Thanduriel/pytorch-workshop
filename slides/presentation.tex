@@ -261,7 +261,7 @@ learned weight matrix $W_i \in \R^{N_i \times N_{i+1}}$ and bias $b_i \in \R^{N_
 	\begin{itemize}
 		\item Clone repository
 		\begin{minted}{bash}
-git clone
+git clone https://github.com/Thanduriel/pytorch-workshop.git
 		\end{minted}
 		\item Create Python virtual environment
 		\begin{minted}{bash}
@@ -322,7 +322,7 @@ pip install -r requirements.txt
 \begin{frame}{Regularization Techniques}
 	Weight decay (Tikhonov regularization)
 	\[
-	\hat{\mathcal{L}} (u, \hat{u}, w_r) = \mathcal{L} (u,\hat{u}) + \lambda ||w_r||^2
+	\hat{\mathcal{L}} (u, \hat{u}, w_r) = \mathcal{L} (u,\hat{u}) + \lambda ||w_r||_2^2
 	\]
 	\visible<2->{
 	Layer normalization
