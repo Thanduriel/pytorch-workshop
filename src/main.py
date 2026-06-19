@@ -28,6 +28,8 @@ def plot_solution(grid, fs, us, labels):
 	plt.legend()
 	plt.show()
 
+seed = 17175383
+
 # data generation
 inputs_train, targets_train, grid = generate_data(32, 128, k_min=1, k_max=8, seed=seed, f_noise_std=0.1, amp_decay=2.0) # 2.0, 4.0
 inputs_valid, targets_valid, _ = generate_data(32, 16, k_min=1, k_max=8, seed=seed, f_noise_std=0.1, amp_decay=0.5) # 0.5, 0.25
@@ -36,13 +38,12 @@ if plot_dataset:
 	plot_solution(grid, [inputs_train[0], inputs_valid[0]], [targets_train[0], targets_valid[0]], labels=['train', 'valid'])
 
 # training
-seed = 17175383
 torch.manual_seed(seed)
 nets = []
 wd_settings = [0.0, 0.1, 0.5]
 for wd in wd_settings: # , 0.1, 0.5
-	net = neuralnets.make_simple_nn(inputs_train.shape[1], 64, targets_train.shape[1], 4)
-	train_losses, valid_losses = train(net, (inputs_train, targets_train), (inputs_valid, targets_valid), 256, lr=0.0005, weight_decay=wd)
+	net = neuralnets.ResNet(inputs_train.shape[1], 80, targets_train.shape[1], 6)
+	train_losses, valid_losses = train(net, (inputs_train, targets_train), (inputs_valid, targets_valid), 128, lr=0.001, weight_decay=wd)
 	nets.append(net)
 	if plot_losses:
 		plt.semilogy(train_losses, label=f'train wd={wd}', markevery=8)
